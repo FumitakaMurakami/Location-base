@@ -27,6 +27,8 @@
   <body style="margin: 0; overflow: hidden">
     <div id="status"></div>
     <div id="positions"></div>
+    <div id="A"></div>
+    <div id="B"></div>
     <a-scene
       vr-mode-ui="enabled: false"
       embedded
@@ -122,6 +124,8 @@
       const text = document.querySelector("#text");
       const text1 = document.querySelector("#text1");
       const text2 = document.querySelector("#text2");
+      const positions = document.querySelector("#A");
+      const positions = document.querySelector("#B");
       function success(position) {
         console.log(text.getAttribute("gps-entity-place"));
         let modellatitude = text.getAttribute("gps-entity-place").latitude;
@@ -136,6 +140,7 @@
           "gps-entity-place",
           `latitude:${latitude + 0.0005}; longitude:${longitude};`
         );
+
         text2.setAttribute(
           "gps-entity-place",
           `latitude:${latitude - 0.0005}; longitude:${longitude};`
@@ -154,6 +159,10 @@
           pointDistance +
           "m" +
           "</div>";
+        A.innerHTML =
+          "<div>latitude:" + text1.getAttribute("gps-entity-place") + "</div>";
+        B.innerHTML =
+          "<div>latitude:" + text2.getAttribute("gps-entity-place") + "</div>";
       }
 
       function error() {
