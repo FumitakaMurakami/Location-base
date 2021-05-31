@@ -67,5 +67,8 @@
         navigator.geolocation.getCurrentPosition(success, error);
       }
     }
+    window.addEventListener("load", (event) => {
+      geoFindMe();
+    });
   </script>
 </html>
