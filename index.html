@@ -130,14 +130,7 @@
         const pointDistance = Math.round(
           distance(modellatitude, modellongitude, latitude, longitude) * 1000
         );
-        text1.setAttribute(
-          "gps-entity-place",
-          `latitude:${latitude + 0.0005}; longitude:${longitude};`
-        );
-        text2.setAttribute(
-          "gps-entity-place",
-          `latitude:${latitude - 0.0005}; longitude:${longitude};`
-        );
+
         status.textContent = "";
         positions.innerHTML =
           "<div>latitude:" +
