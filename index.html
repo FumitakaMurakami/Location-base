@@ -21,40 +21,13 @@
         color: white;
         font-size: 1em;
       }
-      #A {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: top;
-        z-index: 10;
-        color: white;
-        font-size: 1em;
-      }
-      #B {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: top;
-        z-index: 10;
-        color: white;
-        font-size: 1em;
-      }
     </style>
   </head>
 
   <body style="margin: 0; overflow: hidden">
     <div id="status"></div>
     <div id="positions"></div>
-    <div id="A"></div>
-    <div id="B"></div>
+
     <a-scene
       vr-mode-ui="enabled: false"
       embedded
@@ -171,6 +144,12 @@
           "gps-entity-place",
           `latitude:${latitude - 0.0005}; longitude:${longitude};`
         );
+        const Ala = text1.getAttribute("gps-entity-place").latitude - latitude;
+        const Alo =
+          text1.getAttribute("gps-entity-place").longitude - longitude;
+        const Bla = text2.getAttribute("gps-entity-place").latitude - latitude;
+        const Blo =
+          text2.getAttribute("gps-entity-place").longitude - longitude;
         status.textContent = "";
         positions.innerHTML =
           "<div>latitude:" +
@@ -184,11 +163,16 @@
           "<br>モデルまでの距離" +
           pointDistance +
           "m" +
+          modellongitude +
+          "<br>" +
+          Ala +
+          " " +
+          Alo +
+          "<br>" +
+          Bla +
+          " " +
+          Blo +
           "</div>";
-        A.innerHTML =
-          "<div>latitude:" + text1.getAttribute("gps-entity-place") + "</div>";
-        B.innerHTML =
-          "<div>latitude:" + text2.getAttribute("gps-entity-place") + "</div>";
       }
 
       function error() {
