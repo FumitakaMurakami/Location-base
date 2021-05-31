@@ -46,6 +46,21 @@
     function getRandomArbitrary(min, max) {
       return Math.random() * (max - min) + min;
     }
+
+    function distance(lat1, lng1, lat2, lng2) {
+      const R = Math.PI / 180;
+      lat1 *= R;
+      lng1 *= R;
+      lat2 *= R;
+      lng2 *= R;
+      return (
+        6371 *
+        Math.acos(
+          Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) +
+            Math.sin(lat1) * Math.sin(lat2)
+        )
+      );
+    }
     function geoSetup() {
       const status = document.querySelector("#status");
       const positions = document.querySelector("#positions");
@@ -85,16 +100,14 @@
       const positions = document.querySelector("#positions");
       const text = document.querySelector("#text");
       function success(position) {
-        console.log(text.getAttribute("gps-entity-place").latitude);
+        console.log(text.getAttribute("gps-entity-place"));
         let modellatitude = text.getAttribute("gps-entity-place").latitude;
         let modellongitude = text.getAttribute("gps-entity-place").longitude;
         console.log(position);
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        const distance = Math.sqrt(
-          Math.pow(modellatitude - latitude, 2) +
-            Math.pow(modellongitude - longitude, 2)
-        );
+        const pointDistance =
+          distance(modellatitude, modellongitude, latitude, longitude) * 1000;
         status.textContent = "";
         positions.innerHTML =
           "<div>latitude:" +
@@ -102,7 +115,8 @@
           " longitude:" +
           longitude +
           "<br>モデルまでの距離" +
-          distance +
+          pointDistance +
+          "m" +
           "</div>";
       }
 
