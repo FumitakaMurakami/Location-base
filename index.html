@@ -43,6 +43,38 @@
     </a-scene>
   </body>
   <script>
+    function getRandomArbitrary(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+    function geoSetup() {
+      const status = document.querySelector("#status");
+      const positions = document.querySelector("#positions");
+      const text = document.querySelector("#text");
+      function success(position) {
+        console.log(text.getAttribute("gps-entity-place"));
+        console.log(position);
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        randomlatitude = getRandomArbitrary(0.0009, 0.0001);
+        randomlongitude = getRandomArbitrary(0.0009, 0.0001);
+        console.log(randomlatitude);
+        let modellatitude = latitude + randomlatitude;
+        let modellongitude = longitude + randomlongitude;
+        console.log(modellatitude, modellongitude);
+        status.textContent = "";
+      }
+
+      function error() {
+        status.textContent = "Unable to retrieve your location";
+      }
+
+      if (!navigator.geolocation) {
+        status.textContent = "Geolocation is not supported by your browser";
+      } else {
+        status.textContent = "Locating…";
+        navigator.geolocation.getCurrentPosition(success, error);
+      }
+    }
     function geoFindMe() {
       const status = document.querySelector("#status");
       const positions = document.querySelector("#positions");
@@ -81,6 +113,7 @@
       }
     }
     window.addEventListener("load", (event) => {
+      geoSetup();
       geoFindMe();
     });
   </script>
