@@ -61,6 +61,11 @@
         let modellatitude = latitude + randomlatitude;
         let modellongitude = longitude + randomlongitude;
         console.log(modellatitude, modellongitude);
+        text.setAttribute(
+          "gps-entity-place",
+          `latitude:${modellatitude}; longitude:${modellongitude};`
+        );
+        console.log(text.getAttribute("gps-entity-place"));
         status.textContent = "";
       }
 
