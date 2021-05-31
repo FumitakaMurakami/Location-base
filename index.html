@@ -81,8 +81,8 @@
       const text = document.querySelector("#text");
       function success(position) {
         console.log(text.getAttribute("gps-entity-place").latitude);
-        let modellatitude = 35.45254364246313;
-        let modellongitude = 139.6199661419556;
+        let modellatitude = text.getAttribute("gps-entity-place").latitude;
+        let modellongitude = text.getAttribute("gps-entity-place").longitude;
         console.log(position);
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
