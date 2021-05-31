@@ -95,11 +95,11 @@
         );
         text1.setAttribute(
           "gps-entity-place",
-          `latitude:${latitude + 0.002}; longitude:${modellongitude};`
+          `latitude:${latitude + 0.002}; longitude:${longitude};`
         );
         text2.setAttribute(
           "gps-entity-place",
-          `latitude:${latitude - 0.002}; longitude:${modellongitude};`
+          `latitude:${latitude - 0.002}; longitude:${longitude};`
         );
         console.log(text.getAttribute("gps-entity-place"));
         status.textContent = "";
