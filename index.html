@@ -9,19 +9,23 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     <style>
       #debug {
+        height: 100%;
+        width: 100%;
+        color: white;
         position: absolute;
-        z-index: 10000;
-        background-color: #fff;
-        padding: 10px;
         top: 0;
         left: 0;
-        display: block;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     </style>
   </head>
 
   <body style="margin: 0; overflow: hidden">
-    <div id="status"></div>
+    <!-- <div id="status"></div> -->
     <div id="positions"></div>
     <a-scene
       vr-mode-ui="enabled: false"
@@ -49,14 +53,14 @@
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        status.textContent = "";
+        /* status.textContent = ""; */
         /* mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
   mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`; */
         positions.innerHTML =
           "<div>latitude:" + latitude + "longitude:" + longitude + "</div>";
       }
 
-      function error() {
+      /* function error() {
         status.textContent = "Unable to retrieve your location";
       }
 
@@ -65,7 +69,7 @@
       } else {
         status.textContent = "Locating…";
         navigator.geolocation.getCurrentPosition(success, error);
-      }
+      } */
     }
     window.addEventListener("load", (event) => {
       geoFindMe();
