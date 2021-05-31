@@ -33,6 +33,7 @@
       arjs="sourceType: webcam; debugUIEnabled: false;"
     >
       <a-text
+        id="text"
         value="This content will always face you."
         look-at="&#91;gps-camera&#93;"
         scale="120 120 120"
@@ -45,8 +46,9 @@
     function geoFindMe() {
       const status = document.querySelector("#status");
       const positions = document.querySelector("#positions");
-
+      const text = document.querySelector("#text");
       function success(position) {
+        consol.log(text);
         let modellatitude = 35.45254364246313;
         let modellongitude = 139.6199661419556;
         console.log(position);
