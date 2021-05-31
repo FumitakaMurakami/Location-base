@@ -44,6 +44,7 @@
   <script>
     function geoFindMe() {
       const position = navigator.geolocation.GeolocationPosition;
+      console.log(position);
       const positions = document.querySelector("#positions");
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
